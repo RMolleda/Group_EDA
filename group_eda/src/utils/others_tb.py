@@ -9,3 +9,13 @@ def give_json(df, countries, column_of_interest):
     a = df[mask].groupby('date').mean()[[column_of_interest]]
     a = a.rename(columns={"total_cases": "t_c_averages"})
     return a.to_json()
+
+
+def filter_countries(df, countries):
+    """
+    This function receives a pandas dataframe and a list of countries of interest.
+    It returns a filtered dataframe that only contains
+    the rows of the countries of interest
+    """
+    mask = df['location'].isin(countries)
+    return df[mask]
