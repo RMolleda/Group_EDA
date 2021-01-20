@@ -13,10 +13,6 @@ for i in range(4):
     sys.path.append(directorio)
     print('Dirname\n', directorio)
 
-sys.path.append('../../../../../')
-sys.path.append('../../../')
-sys.path.append('../../../../')
-
 print(sys.path)
 #python -m pkg.api.server
 from src.services.api.test1 import give_json
@@ -53,7 +49,9 @@ class Console():
         password = args['j']
 
         if password == 18:
-            give_json('Iran', 'Netherlands', 'Spain', 'Brazil', 'Mexico')
+            a = give_json('Iran', 'Netherlands', 'Spain', 'Brazil', 'Mexico')
+            print('\nCorrect password, here is your json:\n', a)
+            
 
         #here goes the function that downloads the json file
 
