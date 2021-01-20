@@ -1,26 +1,34 @@
-def start_server():
-    """ Esta función inicia el servidor con sus imports para procesar los html y jsons de la API"""
-    from flask import Flask
-    import os
-    from test1 import give_json
-    import time
-    """ Hemos importado las funciones que nos hacen el request a la API general con las máscaras ya aplicadas """
+from flask import Flask
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
+from test1 import give_json
+import os
 
-    app = Flask(__name__)
+app = Flask(__name__)
+auth = HTTPBasicAuth()
 
-    @app.route('/')
-    
+users = {
+    "F": generate_password_hash("2001"),
+    "C": generate_password_hash("2000")
+}
 
-    def hello():
-        """Esta función nos inicia el main devolviendonos el json con las máscaras aplicadas en las funciones"""
-        d = give_json('Spain', 'Iran', 'Brazil', 'Mexico', 'Netherlands')
-        return d
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and \
+            check_password_hash(users.get(username), password):
+        return username
 
-    if __name__ == '__main__':
-        """Configuraciones de inicio del servidor"""
-        port = int(os.environ.get('PORT', 6060))
-        if port == 6060:
-            app.debug = True
-        app.run(host='0.0.0.0', port=port) 
-        """Aqui estamos situando el host de la aplicacion como "localhost" """
-start_server()
+@app.route('/')
+@auth.login_required
+def index():
+    return give_json('Spain', 'Iran', 'Brazil', 'Mexico', 'Netherlands')
+
+
+if __name__ == '__main__':
+    """Configuraciones de inicio del servidor"""
+    port = int(os.environ.get('PORT', 6060))
+    if port == 6060:
+        app.debug = True
+    app.run(host='0.0.0.0', port=port) 
+    """Aqui estamos situando el host de la aplicacion como "localhost" """
+app.run()
