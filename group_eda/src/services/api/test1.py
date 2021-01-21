@@ -1,11 +1,11 @@
-def give_json(country1, country2, country3, country4, country5):
+def give_json(countries):
     # Importing library
     import pandas as pd
     # Getting url to import data
     url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
     df = pd.read_csv(url)
     # Constraints of group C
-    mask = (df['location'] == country1) | (df['location'] == country2) | (df['location'] == country3) | (df['location'] == country4) | (df['location'] == country5)
+    mask = (df['location'] == countries[0]) | (df['location'] == countries[1]) | (df['location'] == countries[2]) | (df['location'] == countries[3]) | (df['location'] == countries[4])
     # Changing date series to datetime fromat
     df['date'] = pd.to_datetime(df['date'])
     a = df[mask].groupby('date').mean()[['total_cases']]
