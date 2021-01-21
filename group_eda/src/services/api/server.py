@@ -8,8 +8,8 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 users = {
-    "F": generate_password_hash("2001"),
-    "C": generate_password_hash("2000")
+    "B": generate_password_hash("88"),
+    "C": generate_password_hash("edades")
 }
 
 @auth.verify_password
@@ -21,7 +21,11 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def index():
-    return give_json('Spain', 'Iran', 'Brazil', 'Mexico', 'Netherlands')
+    return "Your token id is : {token:B123124124124}, please log with it in the url route"
+
+@app.route("/token:B123124124124")
+def return_json():
+    return give_json(countries=['Spain', 'Iran', 'Brazil', 'Mexico', 'Netherlands'])
 
 
 if __name__ == '__main__':
