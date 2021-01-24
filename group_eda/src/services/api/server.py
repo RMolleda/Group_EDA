@@ -8,8 +8,8 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 users = {
-    "B": generate_password_hash("88"),
-    "C": generate_password_hash("edades")
+    "C": generate_password_hash("76"),
+    "B": generate_password_hash("edades")
 }
 
 @auth.verify_password
@@ -21,18 +21,17 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def index():
-    return "Your token id is : {token:B123124124124}, please log with it in the url route"
+    return "Your token id is : {token:C98453658}, you can log in http://apiprojectdata.ddns.net:5000/token:C98453658 to download de API endpoint"
 
-@app.route("/token:B123124124124")
+@app.route("/token:C98453658")
 def return_json():
     return give_json(countries=['Spain', 'Iran', 'Brazil', 'Mexico', 'Netherlands'])
 
 
 if __name__ == '__main__':
     """Configuraciones de inicio del servidor"""
-    port = int(os.environ.get('PORT', 6060))
-    if port == 6060:
+    port = int(os.environ.get('PORT', 5000))
+    if port == 5000:
         app.debug = True
-    app.run(host='0.0.0.0', port=port) 
+    app.run(host='82.223.204.128', port=port) 
     """Aqui estamos situando el host de la aplicacion como "localhost" """
-app.run()

@@ -1,6 +1,6 @@
+import pandas as pd 
+
 def give_json(countries):
-    # Importing library
-    import pandas as pd
     # Getting url to import data
     url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
     df = pd.read_csv(url)
