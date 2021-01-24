@@ -9,5 +9,5 @@ def give_json(countries):
     # Changing date series to datetime fromat
     df['date'] = pd.to_datetime(df['date'])
     a = df[mask].groupby('date').mean()[['total_cases']]
-    a = a.rename(columns={"total_cases": "t_c_avg"})
+    a = a.rename(columns={"total_cases": "t_c_averages"})
     return a.to_json()
