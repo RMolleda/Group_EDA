@@ -39,7 +39,6 @@ get_root_path(N=3)
 #---
 class Plotly_Plot():
     '''
-    Father/Mother class
 
                         ---what it does---
     This class is created with the purpose of visualizing any kind of plot from a Dataframe.
@@ -91,7 +90,6 @@ class Plotly_Plot():
             )
         myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
         myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
-        myplot.write_image(self.filename + '.png')
 
       
     def Lineplot(self):
