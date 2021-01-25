@@ -48,7 +48,7 @@ class Plotly_Plot():
 
     Plotly is the only library used on it.
     '''
-    def __init__(self, df, x_axis: str, y_axis: str, x_label: str, y_label: str, title: str, color: str, filename: str, z_axis='', z_label='', animation_frame=None, animation_group=None, size=None, hover_name=None):
+    def __init__(self, df, x_axis: str, y_axis: str, x_label: str, y_label: str, title: str, color: str, filename: str, z_axis=None, z_label=None, animation_frame=None, animation_group=None, size=None, hover_name=None):
         '''
         df: a pandas.DataFrame with the desired queries.
         x_axis: a string that indicates the values in x axis
@@ -74,10 +74,6 @@ class Plotly_Plot():
         animation_group: the values which will be grouped in the plot
         size: the values than will delimit the size of the plot
         '''
-        self.animation_frame = animation_frame
-        self.animation_group = animation_group
-        self.size = size
-        self.hover_name = hover_name
 
     def Scatterplot(self):
         '''
@@ -87,14 +83,14 @@ class Plotly_Plot():
         myplot = px.scatter(data_frame=self.df,
             x=self.x_axis,
             y=self.y_axis,
-            color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis :                       self.y_label})
+            color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis :self.y_label})
             
         myplot.update_layout(
-                xaxis=dict(showline=True, showgrid=True, showticklabels=True,tickfont=dict                                  (family='Helvetica', size=12)),
-                yaxis=dict(showline=True, showticklabels=True, showgrid=True,tickfont=dict                              (family='Helvetica', size= 12))
+                xaxis=dict(showline=True, showgrid=True, showticklabels=True,tickfont=dict(family='Helvetica', size=12)),
+                yaxis=dict(showline=True, showticklabels=True, showgrid=True,tickfont=dict(family='Helvetica', size= 12))
             )
-        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'           + self.filename + '.html')
-        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/                static/' + self.filename + '.png')
+        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
+        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
         myplot.write_image(self.filename + '.png')
 
       
@@ -105,11 +101,11 @@ class Plotly_Plot():
         myplot = px.line(data_frame=self.df,
             x=self.x_axis,
             y=self.y_axis,
-            color=self.color, title=self.title, labels={self.x_axis : self.x_label,             self.y_axis : self.y_label})
+            color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis : self.y_label})
 
         myplot.update_layout(
-                xaxis=dict(showline=True, showgrid=True, showticklabels=True,                       tickfont=dict(family='Helvetica', size=12)),
-                    yaxis=dict(showline=True, showticklabels=True, showgrid=True,                       tickfont=dict(family='Helvetica', size= 12))
+                xaxis=dict(showline=True, showgrid=True, showticklabels=True, tickfont=dict(family='Helvetica', size=12)),
+                    yaxis=dict(showline=True, showticklabels=True, showgrid=True, tickfont=dict(family='Helvetica', size= 12))
             )
         
         myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
@@ -124,14 +120,14 @@ class Plotly_Plot():
             myplot = px.box(data_frame=self.df,
             x=self.x_axis,
             y=self.y_axis,
-            color=self.color, title=self.title, labels={self.x_axis : self.x_label,             self.y_axis : self.y_label},
+            color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis : self.y_label},
             points='all',
             )
             myplot.add_trace(boxmean='sd')
 
             myplot.update_layout(
-                xaxis=dict(showline=True, showgrid=True, showticklabels=True,                       tickfont=dict(family='Helvetica', size=12)),
-                    yaxis=dict(showline=True, showticklabels=True, showgrid=True,                       tickfont=dict(family='Helvetica', size= 12))
+                xaxis=dict(showline=True, showgrid=True, showticklabels=True, tickfont=dict(family='Helvetica', size=12)),
+                    yaxis=dict(showline=True, showticklabels=True, showgrid=True, tickfont=dict(family='Helvetica', size= 12))
             )
 
             myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
@@ -141,14 +137,14 @@ class Plotly_Plot():
             myplot = px.box(data_frame=self.df,
                 x=self.x_axis,
                 y=self.y_axis,
-                color=self.color, title=self.title, labels={self.x_axis : self.x_label,             self.y_axis : self.y_label},
+                color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis : self.y_label},
                 points='all',
                 )
                 myplot.add_trace(boxmean='sd')
 
                 myplot.update_layout(
-                    xaxis=dict(showline=True, showgrid=True, showticklabels=True,                       tickfont=dict(family='Helvetica', size=12)),
-                        yaxis=dict(showline=True, showticklabels=True, showgrid=True,                       tickfont=dict(family='Helvetica', size= 12))
+                    xaxis=dict(showline=True, showgrid=True, showticklabels=True,tickfont=dict(family='Helvetica', size=12)),
+                        yaxis=dict(showline=True, showticklabels=True, showgrid=True, tickfont=dict(family='Helvetica', size= 12))
                 )
 
                 myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
@@ -193,7 +189,7 @@ class Plotly_Plot():
             color=self.color, title=self.title, labels={self.x_axis : self.x_label, self.y_axis : self.y_label})
 
         myplot.update_layout(
-                xaxis=dict(showline=True, showgrid=True, showticklabels=True,tickfont=dict                                  (family='Helvetica', size=12)),
+                xaxis=dict(showline=True, showgrid=True, showticklabels=True,tickfont=dict(family='Helvetica', size=12)),
                     yaxis=dict(showline=True, showticklabels=True, showgrid=True,tickfont=dict(family='Helvetica', size= 12))
             )
         
@@ -210,22 +206,22 @@ class Plotly_Plot():
         '''
 
 
-        myplot = px.scatter_3d(data_frame=self.df, x=self.x_axis, y=self.y_axis, labels={self.x_axis :                  self.x_label, self.y_axis : self.y_label, self.z_axis: self.z_label}))
+        myplot = px.scatter_3d(data_frame=self.df, x=self.x_axis, y=self.y_axis, labels={self.x_axis :self.x_label, self.y_axis : self.y_label, self.z_axis: self.z_label}))
 
-        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'           + self.filename + '.html')
+        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'+ self.filename + '.html')
 
-        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/                static/' + self.filename + '.png')
+        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
 
 
     def Line3D(self):
         '''
         Draws a 3D Line plot by introducing 3 parameters.
         '''
-        myplot = px.line_3d(data_frame=self.df, x=self.x_axis, y=self.y_axis, labels={self.x_axis :                  self.x_label, self.y_axis : self.y_label, self.z_axis: self.z_label})))
+        myplot = px.line_3d(data_frame=self.df, x=self.x_axis, y=self.y_axis, labels={self.x_axis : self.x_label, self.y_axis : self.y_label, self.z_axis: self.z_label})))
 
-         myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'           + self.filename + '.html')
+         myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
 
-        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/                static/' + self.filename + '.png')
+        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
     def MotionScatter(self):
         '''
         Displays a Scatter plot with a slider on the bottom to show progressions/tendencies with motion
@@ -237,9 +233,9 @@ class Plotly_Plot():
             log_x=True, size_max=55, range_x=[100, 100000],
             range_y=[25, 90])
         
-        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'           + self.filename + '.html')
+        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
 
-        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/                static/' + self.filename + '.png')
+        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
 
     def MotionBar(self):
         '''
@@ -251,6 +247,6 @@ class Plotly_Plot():
             log_x=True, size_max=55,
             range_y=[0, 100000000]))
 
-        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/'           + self.filename + '.html')
+        myplot.write_html('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/html/' + self.filename + '.html')
 
-        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/                static/' + self.filename + '.png')
+        myplot.write_image('GIT_HUB_LEO/Data_Science_Bootcamp_Leo/Group_EDA/group_eda/documentation/static/' + self.filename + '.png')
